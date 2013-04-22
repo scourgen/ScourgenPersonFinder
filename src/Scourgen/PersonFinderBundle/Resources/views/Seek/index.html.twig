@@ -1,0 +1,17 @@
+{% extends 'ScourgenPersonFinderBundle::Layout.html.twig' %}
+
+
+{% set seek_active=1 %}
+
+{% block headline %}
+    我要找人
+{% endblock %}
+
+{% block content_content %}
+    <form action="{{ path('seek_search') }}" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+            {{ form_rest(form)  }}
+            <input type="submit"/>
+        </fieldset>
+    </form>
+{% endblock %}

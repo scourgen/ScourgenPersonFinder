@@ -1,0 +1,68 @@
+{% extends 'ScourgenPersonFinderBundle::Layout.html.twig' %}
+
+
+{% set seek_active=1 %}
+
+{% block headline %}
+    “{{ person.fullname }}” 的详细信息
+{% endblock %}
+
+{% block content_content %}
+    <form class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label">姓名</label>
+            <div class="controls">
+                {{ person.fullname }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">描述</label>
+            <div class="controls">
+                {{ person.description }}
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">信息来源时间</label>
+            <div class="controls">
+                {{ person.sourcedate|date("Y-m-d H:i") }}
+            </div>
+        </div>
+    </form>
+    <div class="page-header">
+        <h2>关于“{{ person.fullname }}”的所有线索
+        </h2>
+    </div>
+    {% for note in person.personRecords %}
+        {% if loop.index0 is divisibleby(3) %}
+            <ul class="thumbnails">
+        {% endif %}
+        <li class="span4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>“{{ note.authorname }}”说：</h3>
+                    <p>{{ note.text }}</p>
+                    <p>信息来源时间：{{ note.sourcedate|date("Y-m-d H:i") }}</p>
+                </div>
+            </div>
+        </li>
+        {% if loop.last or loop.index is divisibleby(3) %}
+            </ul>
+        {% endif %}
+    {% endfor %}
+    <div class="page-header">
+        <h2>我要提交关于“{{ person.fullname }}”的新线索
+        </h2>
+    </div>
+
+
+    {{ form_errors(form) }}
+    <form action="{{ path('note_post_new',{'person_id':person.id}) }}" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+            {{ form_row(form.author_name,{'label':'你的姓名','attr':{'placeholder':'例如：王小虎'}} ) }}
+            {{ form_row(form.author_name,{'label':'你的姓名','attr':{'placeholder':'例如：王小虎'}} ) }}
+            {{ form_row(form.text,{'label':'你希望提供的信息','attr':{'placeholder':'例如：在市中心小学见过他，身体健康，正在寻找妈妈。'}} ) }}
+            <button type="submit" class="btn">提交</button>
+            {{ form_rest(form)  }}
+        </fieldset>
+    </form>
+{% endblock %}

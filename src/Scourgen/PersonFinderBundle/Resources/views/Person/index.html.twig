@@ -1,0 +1,21 @@
+{% extends 'ScourgenPersonFinderBundle::Layout.html.twig' %}
+
+{% set note_active=1 %}
+
+{% block headline %}
+    提供线索
+{% endblock %}
+
+{% block content_content %}
+    {{ form_errors(form) }}
+
+    <form action="{{ path('post_new_person') }}" method="post" {{ form_enctype(form) }}>
+    <fieldset>
+        {{ form_row(form.fullname,{'label':'姓名','attr':{'placeholder':'例如：王小虎'}} ) }}
+        <span class="help-block">您输入的姓名将成为其他人寻找的依据，请提供他的正式名字，如果无法找到，则使用其最常用的名字</span>
+        {{ form_row(form.description,{'label':'描述','attr':{'placeholder':'例如：在市中心小学见过他，身体健康，正在寻找妈妈。'}} ) }}
+        <button type="submit" class="btn">提交</button>
+        {{ form_rest(form)  }}
+    </fieldset>
+</form>
+{% endblock %}

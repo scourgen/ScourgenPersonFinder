@@ -1,0 +1,33 @@
+{% extends 'ScourgenPersonFinderBundle::Layout.html.twig' %}
+
+
+{% set seek_active=1 %}
+
+{% block headline %}
+    这是您要找的“{{ name }}”
+{% endblock %}
+
+{% block content_content %}
+
+    {% for person in persons %}
+        {% if loop.index0 is divisibleby(3) %}
+            <ul class="thumbnails">
+        {% endif %}
+        <li class="span4">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3>{{ person.fullname }}</h3>
+                    <p>{{ person.description }}</p>
+                    <p>信息来源时间：{{ person.sourcedate|date("Y-m-d H:i") }}</p>
+                    <p>
+                        <!--a href="#" class="btn btn-primary">查看详细信息</a-->
+                        <a href="{{ path("person_detail",{"person_id":person.id}) }}" class="btn">提供他/她的线索</a>
+                    </p>
+                </div>
+            </div>
+        </li>
+        {% if loop.last or loop.index is divisibleby(3) %}
+            </ul>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

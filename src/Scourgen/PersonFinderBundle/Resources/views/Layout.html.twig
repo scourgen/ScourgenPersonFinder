@@ -1,0 +1,52 @@
+{% extends 'MopaBootstrapBundle::base.html.twig' %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block title %}
+{% endblock title %}
+
+{% block headline %}
+{% endblock headline %}
+
+{% block content_content %}
+{% endblock %}
+
+{% block content_sidebar %}
+{% endblock %}
+
+{% block header %}
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="/">主页</a></li>
+                        <li class="divider-vertical"></li>
+                        <li{% if person_active is defined %} class="active"{% endif %}><a href="{{ path('seek_index') }}">我要找人</a></li>
+                        <li class="divider-vertical"></li>
+                        <!--li{% if note_active is defined %} class="active"{% endif %}><a href="{{ path('post_new_person') }}">提供线索</a></li-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock header %}
+
+
+{% block footer %}
+    <p></p>
+{% endblock footer %}
+
+{% block head_style %}
+    {% stylesheets
+    '@ScourgenPersonFinderBundle/Resources/public/less/style.less'
+    %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen"/>
+    {% endstylesheets %}
+{% endblock head_style %}
