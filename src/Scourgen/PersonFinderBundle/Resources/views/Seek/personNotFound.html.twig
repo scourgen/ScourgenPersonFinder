@@ -7,5 +7,6 @@
 {% endblock %}
 
 {% block content_content %}
-    您要找的人还没有在本系统里有记录，您可以尝试换一个名字进行搜索，或者发布一条找人信息。
+    <p>您要找的人还没有在本系统里有记录，您可以尝试换一个名字进行搜索，或者发布一条找人信息。</p>
+    <a class="btn btn-large btn-success" href="{{ path("post_new_person") }}">新增一条线索</a>
 {% endblock %}
