@@ -69,3 +69,5 @@ mopa_bootstrap:
         show_child_legend: false # default is true
         error_type: block # or inline which is default
     navbar: ~
+
+nelmio_api_doc: ~
