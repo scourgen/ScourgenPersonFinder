@@ -21,7 +21,7 @@
         "kriswallsmith/assetic": "1.1.*@dev",
 
 
-        "mopa/bootstrap-bundle": "dev-master",
+        "mopa/bootstrap-bundle": "2.1.*@dev",
         "twitter/bootstrap": "dev-master",
 
         "nelmio/api-doc-bundle": "dev-master",
